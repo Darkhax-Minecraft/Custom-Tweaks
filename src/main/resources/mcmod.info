@@ -1,0 +1,13 @@
+[{
+	"modid": "ctweaks",
+	"name": "Custom Tweaks",
+	"description": "A serries of tools to customize a Minecraft instance",
+	"version": "${version}",
+	"mcversion": "${mcversion}",
+	"url": "",
+	"updateUrl": "",
+	"authorList": ["Darkhax"],
+	"logoFile": "",
+	"screenshots": [],
+	"dependencies": []
+}]
