@@ -37,6 +37,7 @@ minecraft {
     version = "1.10.2-12.18.1.2018"
     runDir = "run"
     mappings = "snapshot_20160518"
+    useDepAts = true
 }
 
 //Handles basic resources such as mcmod.info
@@ -55,6 +56,8 @@ processResources {
 
         exclude 'mcmod.info'
     }
+    
+    rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
 //Pulls the build version from a Java file.
