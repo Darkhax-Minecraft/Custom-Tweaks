@@ -2,6 +2,7 @@ package net.darkhax.ctweaks;
 
 import net.darkhax.ctweaks.features.Feature;
 import net.darkhax.ctweaks.features.FeatureManager;
+import net.darkhax.ctweaks.handler.ConfigurationHandler;
 import net.darkhax.ctweaks.lib.Constants;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +19,10 @@ public class CTweaks {
     
     @EventHandler
     public void preInit (FMLPreInitializationEvent event) {
+        
+        ConfigurationHandler.initConfig(event.getSuggestedConfigurationFile());
+        FeatureManager.initFeatures();
+        ConfigurationHandler.syncConfig();
         
         FeatureManager.FEATURES.forEach(Feature::onPreInit);
         

@@ -11,7 +11,7 @@ public class ConfigurationHandler {
     /**
      * An instance of the Configuration object being used.
      */
-    private static Configuration config = null;
+    public static Configuration config = null;
     
     /**
      * Initializes the configuration file.
