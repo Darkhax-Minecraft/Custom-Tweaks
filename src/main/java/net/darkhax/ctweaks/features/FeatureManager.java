@@ -3,6 +3,7 @@ package net.darkhax.ctweaks.features;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.darkhax.ctweaks.features.serverlist.FeatureServerList;
 import net.darkhax.ctweaks.handler.ConfigurationHandler;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,6 +23,7 @@ public class FeatureManager {
         
         if (FMLLaunchHandler.side() == Side.CLIENT) {
             
+            registerFeature(new FeatureServerList(), "Server List", "Allows for server entries to edited through config file.");
         }
         
     }
@@ -38,11 +40,10 @@ public class FeatureManager {
     private static void registerFeature (Feature feature, String name, String description) {
         
         feature.enabled = ConfigurationHandler.isFeatureEnabled(feature, name, description);
+        feature.configName = name.toLowerCase().replace(' ', '_');
+        feature.setupConfig(ConfigurationHandler.config);
         
-        if (feature.enabled) {
-            
-            feature.configName = name.toLowerCase().replace(' ', '_');
+        if (feature.enabled)
             FEATURES.add(feature);
-        }
     }
 }
