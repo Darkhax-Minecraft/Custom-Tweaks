@@ -3,6 +3,7 @@ package net.darkhax.ctweaks.features;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.darkhax.ctweaks.features.branding.FeatureBranding;
 import net.darkhax.ctweaks.features.serverlist.FeatureServerList;
 import net.darkhax.ctweaks.handler.ConfigurationHandler;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
@@ -24,6 +25,7 @@ public class FeatureManager {
         if (FMLLaunchHandler.side() == Side.CLIENT) {
             
             registerFeature(new FeatureServerList(), "Server List", "Allows for server entries to edited through config file.");
+            registerFeature(new FeatureBranding(), "Brandings", "Allows the main menu to be rebranded with custom info.");
         }
         
     }
