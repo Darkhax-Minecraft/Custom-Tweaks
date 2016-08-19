@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.darkhax.ctweaks.features.branding.FeatureBranding;
 import net.darkhax.ctweaks.features.serverlist.FeatureServerList;
+import net.darkhax.ctweaks.features.update.FeatureUpdate;
 import net.darkhax.ctweaks.handler.ConfigurationHandler;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,8 +27,8 @@ public class FeatureManager {
             
             registerFeature(new FeatureServerList(), "Server List", "Allows for server entries to edited through config file.");
             registerFeature(new FeatureBranding(), "Brandings", "Allows the main menu to be rebranded with custom info.");
+            registerFeature(new FeatureUpdate(), "Updates", "Allows the modpack author to push messages to the client.");
         }
-        
     }
     
     /**
