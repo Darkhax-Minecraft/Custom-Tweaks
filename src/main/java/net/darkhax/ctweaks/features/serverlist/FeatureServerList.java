@@ -27,7 +27,7 @@ public class FeatureServerList extends Feature {
     @Override
     public void setupConfig (Configuration config) {
         
-        serverEntries = config.getStringList("servers", this.configName, new String[] { "Example Server 1_127.0.0.1:25566", "Example Server 2_192.168.1.254" }, "Servers on this list will be automatically added to the players server list, if they do not already exist. Format is name_serverAdress. The _ character is used to split the name from the IP adress, so it should not be used in the server name.");
+        serverEntries = config.getStringList("servers", this.configName, new String[] { "Example Server 1_127.0.0.1:25566", "Example Server 2_192.168.1.254" }, "Servers on this list will be automatically added to the players server list, if they do not already exist. Format is name@@serverAdress. The @ character is used to split the name from the IP adress, so it should not be used in the server name.");
         removeEntries = config.getStringList("removeEntries", this.configName, new String[] { "192.168.1.1", "192.168.1.2:25565", "play.olddomain.xyz" }, "Server IPs on this list will be automatically removed from the players server list. Allows for old server IPs to be removed from the server list.");
     }
     
@@ -50,7 +50,7 @@ public class FeatureServerList extends Feature {
         
         for (String entry : serverEntries) {
             
-            String[] parameters = entry.split("_");
+            String[] parameters = entry.split("@@");
             
             if (parameters.length == 2) {
                 
