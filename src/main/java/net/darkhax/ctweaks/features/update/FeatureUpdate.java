@@ -18,6 +18,7 @@ public class FeatureUpdate extends Feature {
     private String updateURL;
     private UpdateInfo info;
     private boolean showMessage;
+    private boolean hasShown = false;
     
     @Override
     public void onPreInit () {
@@ -37,8 +38,10 @@ public class FeatureUpdate extends Feature {
     public void onPlayerJoin (EntityJoinWorldEvent event) {
         
         final String message = info.getChatMessage();
-        if (event.getEntity() instanceof EntityPlayer && showMessage && message != null && !message.isEmpty())
+        if (!hasShown && event.getEntity() instanceof EntityPlayer && showMessage && message != null && !message.isEmpty()) {
             ((EntityPlayer) event.getEntity()).addChatMessage(new TextComponentString(message));
+            hasShown = true;
+        }
     }
     
     @SubscribeEvent
