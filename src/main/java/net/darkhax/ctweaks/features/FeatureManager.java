@@ -11,26 +11,26 @@ import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class FeatureManager {
-    
+
     /**
      * List of all registered features.
      */
     public static final List<Feature> FEATURES = new ArrayList<>();
-    
+
     /**
      * This method is called before any mods have had a chance to initialize. Constructors
      * should take care not to reference any actual game code.
      */
     public static void initFeatures () {
-        
+
         if (FMLLaunchHandler.side() == Side.CLIENT) {
-            
+
             registerFeature(new FeatureServerList(), "Server List", "Allows for server entries to edited through config file.");
             registerFeature(new FeatureBranding(), "Brandings", "Allows the main menu to be rebranded with custom info.");
             registerFeature(new FeatureUpdate(), "Updates", "Allows the modpack author to push messages to the client.");
         }
     }
-    
+
     /**
      * Registers a new feature with the feature manager. This will automatically create an
      * entry in the configuration file to enable/disable this feature. If the feature has been
@@ -41,12 +41,13 @@ public class FeatureManager {
      * @param description A short description of the feature.
      */
     private static void registerFeature (Feature feature, String name, String description) {
-        
+
         feature.enabled = ConfigurationHandler.isFeatureEnabled(feature, name, description);
         feature.configName = name.toLowerCase().replace(' ', '_');
         feature.setupConfig(ConfigurationHandler.config);
-        
-        if (feature.enabled)
+
+        if (feature.enabled) {
             FEATURES.add(feature);
+        }
     }
 }

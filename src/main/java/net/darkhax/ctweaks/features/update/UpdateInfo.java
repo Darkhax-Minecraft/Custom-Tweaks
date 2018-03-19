@@ -14,21 +14,21 @@ import com.google.gson.stream.JsonReader;
 import net.darkhax.ctweaks.lib.Constants;
 
 public class UpdateInfo {
-    
+
     @SerializedName("version")
     private String version;
-    
+
     @SerializedName("mainMessage")
     private String guiMessage;
-    
+
     @SerializedName("chatMessage")
     private String chatMessage;
-    
+
     public static UpdateInfo create (String url) {
-        
+
         try {
-            
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+
+            final HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
             final JsonReader reader = new JsonReader(new InputStreamReader((InputStream) connection.getContent()));
             final GsonBuilder builder = new GsonBuilder();
             final Gson gson = builder.create();
@@ -36,32 +36,33 @@ public class UpdateInfo {
             System.out.println(info.toString());
             return info;
         }
-        
-        catch (IOException exception) {
-            
+
+        catch (final IOException exception) {
+
             Constants.LOG.warn(exception);
         }
-        
+
         return new UpdateInfo();
     }
-    
+
     public String getVersion () {
-        
-        return version;
+
+        return this.version;
     }
-    
+
     public String getGuiMessage () {
-        
-        return guiMessage;
+
+        return this.guiMessage;
     }
-    
+
     public String getChatMessage () {
-        
-        return chatMessage;
+
+        return this.chatMessage;
     }
-    
+
+    @Override
     public String toString () {
-        
+
         return String.format("Version: %s Chat: %s GUI: %s", this.version, this.chatMessage, this.guiMessage);
     }
 }
